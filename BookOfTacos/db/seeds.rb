@@ -1,4 +1,4 @@
-puts "BBFIGJSDOJDSOAJ"
+puts "SEEDING TACOS"
 
 
 r1 = Recipe.create(title: 'Black Bean Potato Onion Tacos')
@@ -99,4 +99,13 @@ RecipeIngredient.create(recipe_id: r17.id, ingredient_id: i30.id)
 
 
 
-puts "AAAAAAAA"
+puts "TACOS SEEDED"
+
+puts "SEEDING USERS"
+User.create(name: "michael bluth")
+User.create(name: "GOB")
+User.create(name: "lucille bluth")
+User.create(name: "oscar bluth")
+User.create(name: "lindsay bluth")
+User.create(name: "buster bluth")
+puts "USERS SEEDED"
