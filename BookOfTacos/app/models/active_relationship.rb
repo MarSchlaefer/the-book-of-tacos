@@ -1,3 +1,0 @@
-class ActiveRelationship < ApplicationRecord
-  
-end

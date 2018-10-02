@@ -1,2 +1,20 @@
 <h1>User Profile</h1>
 <h2><%= @user.name %></h2>
+
+<h4>Following:</h4>
+<ul>
+<% @user.following.each do |f| %>
+  <li><%= f.name %></li>
+<% end %>
+</ul>
+<br>
+
+<h4>Followed by:</h4>
+<ul>
+<% @user.followers.each do |f| %>
+<li><%= f.name %></li>
+<% end %>
+</ul>
+
+<br>
+<%= render "follow_form" %>
