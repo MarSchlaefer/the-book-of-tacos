@@ -1,7 +1,7 @@
 puts "BBFIGJSDOJDSOAJ"
 
 
-r1 = Recipe.create(title: 'Black Bean Potato and Onion Tacos')
+r1 = Recipe.create(title: 'Black Bean Potato Onion Tacos')
 i1 = Ingredient.create(name: 'Garlic black beans')
 RecipeIngredient.create(recipe_id: r1.id, ingredient_id: i1.id)
 
@@ -21,7 +21,7 @@ r4 = Recipe.create(title: 'Vegan Red Cabbage Tacos')
 i5 = Ingredient.create(name: 'Garlic black beans')
 RecipeIngredient.create(recipe_id: r4.id, ingredient_id: i5.id)
 
-r5 = Recipe.create(title: 'Steak Sweet Potato and Apple Tacos')
+r5 = Recipe.create(title: 'Steak Sweet Potato Apple Tacos')
 i6 = Ingredient.create(name: 'Chopped steak')
 RecipeIngredient.create(recipe_id: r5.id, ingredient_id: i6.id)
 
@@ -29,13 +29,13 @@ r6 = Recipe.create(title: 'Morrocan Lamb Tacos')
 i7 = Ingredient.create(name: 'Moroccan lamb')
 RecipeIngredient.create(recipe_id: r6.id, ingredient_id: i7.id)
 
-r7 = Recipe.create(title: 'Chorizo Sweet Potato and Apple Tacos with Chipotle Sauce')
+r7 = Recipe.create(title: 'Chorizo Sweet Potato Apple Tacos')
 i8 = Ingredient.create(name: 'Chipotle sauce')
 i9 = Ingredient.create(name: 'Chorizo')
 RecipeIngredient.create(recipe_id: r7.id, ingredient_id: i8.id)
 RecipeIngredient.create(recipe_id: r7.id, ingredient_id: i9.id)
 
-r8 = Recipe.create(title: 'Chicken Verde Corn and Black Bean Tacos with Pico de Gallo and Salsa de Aguacate')
+r8 = Recipe.create(title: 'Chicken Verde Corn Black Bean Tacos')
 i10 = Ingredient.create(name: 'Salsa de aguacate')
 i11 = Ingredient.create(name: 'Corn and black beans')
 i12 = Ingredient.create(name: 'Slow cooked salsa verde chicken')
@@ -43,13 +43,13 @@ RecipeIngredient.create(recipe_id: r8.id, ingredient_id: i10.id)
 RecipeIngredient.create(recipe_id: r8.id, ingredient_id: i11.id)
 RecipeIngredient.create(recipe_id: r8.id, ingredient_id: i12.id)
 
-r9 = Recipe.create(title: 'Pulled Pork Chard and Pickled Onion Tacos')
+r9 = Recipe.create(title: 'Pork Chard Onion Tacos')
 i13 = Ingredient.create(name: 'Pickled red onions')
 i14 = Ingredient.create(name: 'Swiss chard')
 RecipeIngredient.create(recipe_id: r9.id, ingredient_id: i13.id)
 RecipeIngredient.create(recipe_id: r9.id, ingredient_id: i14.id)
 
-r10 = Recipe.create(title: 'Traditional American Taco')
+r10 = Recipe.create(title: 'Traditional American Tacos')
 i15 = Ingredient.create(name: 'Hard corn shells')
 i16 = Ingredient.create(name: 'Black olives')
 i17 = Ingredient.create(name: 'Ground beef')
@@ -57,7 +57,7 @@ RecipeIngredient.create(recipe_id: r10.id, ingredient_id: i15.id)
 RecipeIngredient.create(recipe_id: r10.id, ingredient_id: i16.id)
 RecipeIngredient.create(recipe_id: r10.id, ingredient_id: i17.id)
 
-r11 = Recipe.create(title: 'Slow Cooker Chicken in Chile de Arbol sauce')
+r11 = Recipe.create(title: 'Slow Cooker Chicken de Arbol Tacos')
 i18 = Ingredient.create(name: 'Salsa de aguacate')
 i19 = Ingredient.create(name: 'Slow cooked salsa verde chicken')
 RecipeIngredient.create(recipe_id: r11.id, ingredient_id: i18.id)
@@ -79,7 +79,7 @@ r14 = Recipe.create(title: 'Swiss Chard Tacos')
 i24 = Ingredient.create(name: 'Swiss chard')
 RecipeIngredient.create(recipe_id: r14.id, ingredient_id: i24.id)
 
-r15 = Recipe.create(title: 'Zucchini and Corn Tacos')
+r15 = Recipe.create(title: 'Zucchini Corn Tacos')
 i25 = Ingredient.create(name: 'Simple salsa verde')
 i26 = Ingredient.create(name: 'Zucchini and corn filling')
 RecipeIngredient.create(recipe_id: r15.id, ingredient_id: i25.id)
