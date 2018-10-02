@@ -1,4 +1,4 @@
-puts "BBFIGJSDOJDSOAJ"
+puts "SEEDING TACOS"
 
 
 Recipe.create(title: 'Black Bean Potato and Onion Tacos')
@@ -143,4 +143,13 @@ Recipe.create(title: 'Fish Tacos')
 Ingredient.create(name: 'Chipotle sauce')
 Ingredient.create(name: 'Baked tilapia')
 
-puts "AAAAAAAA"
+puts "TACOS SEEDED"
+
+puts "SEEDING USERS"
+User.create(name: "michael bluth")
+User.create(name: "GOB")
+User.create(name: "lucille bluth")
+User.create(name: "oscar bluth")
+User.create(name: "lindsay bluth")
+User.create(name: "buster bluth")
+puts "USERS SEEDED"
