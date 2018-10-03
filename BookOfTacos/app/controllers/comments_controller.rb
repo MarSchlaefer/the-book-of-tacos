@@ -6,12 +6,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create(comment_params)
-    @post = @comment.post
     if @comment.valid?
-      redirect_to @post
+      redirect_to @comment.post
     else
       flash[:error] = @comment.errors.full_messages
-      redirect_to edit_comment_path
+      redirect_to @comment.post
     end
   end
 
@@ -21,9 +20,8 @@ class CommentsController < ApplicationController
 
   def update
     @comment = Comment.update(comment_params)
-    @post = @comment.post
     if @comment.valid?
-      redirect_to @post
+      redirect_to @comment.post
     else
       flash[:error] = @comment.errors.full_messages
       redirect_to edit_comment_path
@@ -43,7 +41,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id)
+    params.require(:comment).permit(:content, :post_id, :user_id)
   end
 
 end

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/login', to: 'sessions#new', as: 'login'
+  post '/login', to: 'sessions#create'
+
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
   resources :restaurants
   resources :recipe_ingredients
   resources :ingredients
@@ -14,8 +18,4 @@ Rails.application.routes.draw do
 
   resources :relationships, only: %i(create destroy)
 
-  get '/login', to: 'sessions#new', as: 'login'
-  post '/login', to: 'sessions#create'
-
-  delete '/logout', to: 'sessions#destroy', as: 'logout'
 end
