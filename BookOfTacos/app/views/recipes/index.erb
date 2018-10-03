@@ -11,18 +11,19 @@
   </head>
   <body>
     <h1>Recipes Index</h1>
+    <div id="container">
+        <% @recipes.each do |r| %>
+          <div class="recipe">
+            <p><%= link_to "#{r.title}", recipe_path(r) %></p>
+            <img src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
+            <p><%= r.description %></p>
+          </div>
+        <% end %>
 
-    <ul>
-      <% @recipes.each do |r| %>
-        <li><%= link_to "#{r.title}", recipe_path(r) %></li>
-        <br/>
-      <% end %>
-    </ul>
-
-    <%= form_tag(recipes_path, method: :get) do %>
-      <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
-      <%= submit_tag "Search" %>
-    <% end %>
-    
+        <%= form_tag(recipes_path, method: :get) do %>
+          <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
+          <%= submit_tag "Search" %>
+        <% end %>
+      </div>
   </body>
 </html>
