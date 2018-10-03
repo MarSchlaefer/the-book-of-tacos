@@ -1,39 +1,52 @@
-<h1>User Profile</h1>
-<h2><%= @user.name %></h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookOfTacos</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="usersshowstyle.css" />
+  </head>
+  <body>
+      <h1>User Profile</h1>
+      <h2><%= @user.name %></h2>
+
+      <h4>Following:</h4>
+      <ul>
+      <% @user.following.each do |f| %>
+        <li><%= f.name %></li>
+      <% end %>
+      </ul>
+      <br>
+
+      <h4>Followed by:</h4>
+      <ul>
+      <% @user.followers.each do |f| %>
+      <li><%= f.name %></li>
+      <% end %>
+      </ul>
+
+      <br>
+      <%= render "follow_form" %>
+
+      <img src="avatar.png" alt="Avatar" class="avatar">
+
+      <%= button_to 'Logout', logout_path, method: :delete %>
+
+      <% if current_user.id == @user_id %>
+      <%= button_to 'Edit this Account', edit_user_path %>
+      <%= button_to 'Delete this Account', user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this account?'} %>
+      <% end %>
 
 
-<h4>Following:</h4>
-<ul>
-<% @user.following.each do |f| %>
-  <li><%= f.name %></li>
-<% end %>
-</ul>
-<br>
+      <h3>My Posts</h3>
+      <% @user.posts.each do |post| %>
+        <%= link_to post.name, post%>
+      <% end %>
 
-<h4>Followed by:</h4>
-<ul>
-<% @user.followers.each do |f| %>
-<li><%= f.name %></li>
-<% end %>
-</ul>
-
-<br>
-<%= render "follow_form" %>
-
-<img src="avatar.png" alt="Avatar" class="avatar">
-
-<%= button_to 'Logout', logout_path, method: :delete %>
-
-<% if current_user.id == @user_id %>
-<%= button_to 'Edit this Account', edit_user_path %>
-<%= button_to 'Delete this Account', user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this account?'} %>
-<% end %>
-
-
-<h3>My Posts</h3>
-<% @user.posts.each do |post| %>
-  <%= link_to post.name, post%>
-<% end %>
-
-<h3>My Likes</h3>
-  To be determined
+      <h3>My Likes</h3>
+        To be determined
+  </body>
+</html>
