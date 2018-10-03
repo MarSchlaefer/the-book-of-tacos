@@ -1,0 +1,10 @@
+.post-content {
+  margin: 10px;
+}
+.post-text {
+  padding: 30px;
+}
+
+* {
+  font-family: 'IBM Plex Mono', monospace;
+}

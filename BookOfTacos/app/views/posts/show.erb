@@ -1,20 +1,32 @@
-<h1>Post show page</h1>
-<div class="Post Card">
-
-  <div class="post_text">
-    <p>Title: <%= @post.title %></p>
-    <p>User: <%= @post.user.name %></p>
-    <p>Content: <%= @post.content %></p>
+<div class="post-text">
+  <p id="title"><%= @post.title %></p>
+  <div class="recipe">
+    <%= link_to @post.recipe.title, @post.recipe %>
   </div>
 
-  <div class="post_content">
-    <h4>Comments</h4>
-      <ul><% @post.comments.each do |c| %>
-        <li><%= link_to c.user.name, user_path(c.user) %> <br> <%= c.content %> </li>
-        <% end %>
-      </ul>
+  <p id="author-name"><%= @post.user.name %></p>
+  <p id="content"><%= @post.content %></p>
+</div>
 
-  </div>
+<div class="post-comments">
+  <% if @post.comments.empty? %>
+    <p>Be the first to comment!</p>
+  <% else %>
+    <h4 id="comments">Comments</h4>
+    <ol><% @post.comments.each do |comment| %>
+      <div class="comment"><%= link_to comment.user.name, user_path(comment.user), {class: "comment-author"} %><br /><%= comment.content %> </div>
+      <% end %>
+    </ol>
+  <% end %>
+
+
+  <%= form_for @comment do |f| %>
+    <%= f.label :content, "New Comment" %>
+    <%= f.text_field :content %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit %>
+  <% end %>
 </div>
 
 <!-- if liked?
