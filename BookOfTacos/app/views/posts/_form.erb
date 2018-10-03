@@ -17,5 +17,6 @@
   <% else %>
     <%= collection_select :post, :recipe_id, Recipe.all, :id, :title %><br><br>
   <% end %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit "Submit Post" %>
 <% end %>
