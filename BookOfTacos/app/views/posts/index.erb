@@ -1,9 +1,38 @@
-<h1>Browse all posts</h1>
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>BookOfTacos</title>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-<% @posts.each do |p| %>
-  <ul>
-    <li> <%= p.title %> <br>
-      <img src="" alt="">
-      <%= p.content %> <br>
-    </li>
-  </ul>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <link rel="stylesheet" href="postsstyle.scss" />
+    </head>
+    <h1>Browse all posts</h1>
+      <h1>Recipes Index</h1>
+      <!-- <div id="header">
+        <img src=<%= "/assets/images/headertacos.jpg" %> />
+        <p>TACOSSSSSZZZ</p>
+      </div> -->
+      <div id="headline">
+        <p>Take me to Taco Town!</p>
+      </div>
+      <div id="container">
+          <% @posts.each do |p| %>
+            <div class="post">
+              <img id="index_image" src=<%= "/assets/images/TacoBellParody.jpeg" %> />
+              <p><%= link_to "#{p.title}", posts_path(p) %></p>
+              <p id="content"><%= p.content %></p>
+            </div>
+          <% end %>
+      </div>
+      <div id="button">
+        <%= form_tag(recipes_path, method: :get) do %>
+          <%= select_tag :search, options_for_select(Recipe.all.map {|i| [i.title, i.id]}) %>
+          <%= submit_tag "Search" %>
+        <% end %>
+      </div>
+      <br />
+    </body>
+  </html>
