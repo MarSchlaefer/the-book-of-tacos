@@ -1,2 +1,0 @@
-class PassiveRelationshipsController < ApplicationController
-end

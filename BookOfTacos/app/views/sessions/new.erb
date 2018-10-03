@@ -10,3 +10,14 @@
   <%= text_field_tag :password %>
   <%= submit_tag 'Login' %>
 <% end %>
+
+<%= button_to 'Create New Account', new_user_path %>
+
+
+<% @posts.each do |p| %>
+  <ul>
+    <li> <%= p.title %> <br>
+      <img src="" alt="">
+      <%= p.content %> <br>
+    </li>
+  </ul>
