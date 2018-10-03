@@ -4,21 +4,34 @@
 
 <h4>Following:</h4>
 <ul>
-<% @user.following.each do |f| %>
-  <li><%= f.name %></li>
-<% end %>
+  <% if @user.following.length == 0 %>
+    Make some friends, loser
+  <% else %>
+    <% @user.following.each do |followed| %>
+      <li><%= link_to followed.name, followed  %></li>
+    <% end %>
+  <% end %>
 </ul>
 <br>
 
 <h4>Followed by:</h4>
 <ul>
-<% @user.followers.each do |f| %>
-<li><%= f.name %></li>
-<% end %>
+  <% if @user.followers.length == 0 %>
+    You have no followers, what a loser
+  <% else %>
+    <% @user.followers.each do |follower| %>
+    <li><%= link_to follower.name, follower %></li>
+  <% end %>
+  <% end %>
 </ul>
 
 <br>
-<%= render "follow_form" %>
+<% if (@user != current_user) && !(current_user.following.include? @user) %>
+  <%= render "follow_form" %>
+<% elsif @user.followers.include? current_user %>
+  <%= render "unfollow_form" %>
+<% end %>
+
 
 <img src="avatar.png" alt="Avatar" class="avatar">
 

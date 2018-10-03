@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   resources :recipes
   resources :comments
   resources :posts
-  resources :users, except: %i(index)
-  resources :users do
+  resources :users, except: [:index] do
     member do
       get :following, :followers
     end

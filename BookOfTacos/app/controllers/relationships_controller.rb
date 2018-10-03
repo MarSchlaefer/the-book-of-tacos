@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
 
   def create
     following = User.find(params[:followed_id])
-    current_user.follow(following)
+    relationship = current_user.follow(following)
     redirect_to following
   end
 

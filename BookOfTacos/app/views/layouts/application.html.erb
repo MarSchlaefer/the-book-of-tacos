@@ -14,7 +14,7 @@
     <nav>
             <ul>
               <img class="logo" src="/assets/images/TacoBellParody.jpeg">
-              <li><a class="profile" href="#">Profile</a></li>
+              <li><a class="profile" href="<%= user_path(current_user) %>">Profile</a></li>
               <li><%= link_to "Recipes", recipes_path %></li>
               <li><%= link_to "Log-in", new_user_path %></li>
             </ul>

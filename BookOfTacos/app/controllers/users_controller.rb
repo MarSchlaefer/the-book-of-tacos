@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authorized, only: [:new, :create]
 
   def show
   end
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
+    byebug
     redirect_to @user
   end
 
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name)
+    params.require(:user).permit(:name, :password)
   end
 
 end

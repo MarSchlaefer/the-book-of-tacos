@@ -10,11 +10,8 @@
     <link rel="stylesheet" href="recipeshowstyle.css" />
   </head>
   <body>
-    <h1>Recipe Page</h1>
+    <h1><%= @recipe.title %></h1>
 
-    <!-- <p>Title:</p> -->
-    <p> <%= @recipe.title %> </p>
-    <!-- <p>Description:</p> -->
     <%= @recipe.description%>
     <p>Number of Likes:</p>
     <%= @recipe.like_count %>
