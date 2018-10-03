@@ -43,10 +43,18 @@
 
       <h3>My Posts</h3>
       <% @user.posts.each do |post| %>
-        <%= link_to post.name, post%>
-      <% end %>
+      <ul>
+        <li><%= link_to post.name, post%>
+          <img src="" alt="">
+          <%= post.content %></li>
+        <% end %>
+      </ul>
 
       <h3>My Likes</h3>
-        To be determined
+
+        <% @user.likes.each do |l| %>
+          <%= l.post %> <br>
+          <%= link_to l.post, post_path(l.post) %>
+        <% end %>
   </body>
 </html>

@@ -10,9 +10,15 @@
   <div class="">
     <h4>Comments</h4>
       <ul><% @post.comments.each do |c| %>
-        <li><%= c.user.name %> <br> <%= c.content %> </li>
+        <li><%= link_to c.user.name, user_path(c.user) %> <br> <%= c.content %> </li>
         <% end %>
       </ul>
 
   </div>
 </div>
+
+<!-- if liked?
+  then red heart
+else
+  white heart
+end -->
