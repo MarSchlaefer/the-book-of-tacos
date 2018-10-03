@@ -1,1 +1,9 @@
-<p> do we need all the posts right here?</p>
+<h1>Browse all posts</h1>
+
+<% @posts.each do |p| %>
+  <ul>
+    <li> <%= p.title %> <br>
+      <img src="" alt="">
+      <%= p.content %> <br>
+    </li>
+  </ul>

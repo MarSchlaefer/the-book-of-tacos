@@ -1,5 +1,18 @@
 <h1>Post show page</h1>
+<div class="Post Card">
 
-<p>Title: <%= @post.title %></p>
-<p>User: <%= @post.user.name %></p>
-<p>Content: <%= @post.content %></p>
+  <div class="post_text">
+    <p>Title: <%= @post.title %></p>
+    <p>User: <%= @post.user.name %></p>
+    <p>Content: <%= @post.content %></p>
+  </div>
+
+  <div class="">
+    <h4>Comments</h4>
+      <ul><% @post.comments.each do |c| %>
+        <li><%= c.user.name %> <br> <%= c.content %> </li>
+        <% end %>
+      </ul>
+
+  </div>
+</div>
