@@ -44,5 +44,10 @@
  }
 
  body {
-   background: black;
+   background: white;
+ }
+
+ .logo {
+   height: 20%;
+   width: 20%;
  }
