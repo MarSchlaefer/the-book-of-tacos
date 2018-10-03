@@ -15,7 +15,7 @@
  */
 
 
- /*nav{
+ nav{
    display: flex;
    align-items: center;
    background-color: white;
@@ -45,7 +45,7 @@
 
  body {
    background: white;
- }*/
+ }
 
 .logo {
  height: 10%;
@@ -103,8 +103,8 @@ body { font-family: sans-serif; }
 
 
 
-/*
- .container {
+
+ /*.container {
    display: flex;
    flex-direction: row nowrap;
    overflow-x: scroll;
@@ -121,8 +121,9 @@ body { font-family: sans-serif; }
    text-align: center;
    padding: 14px;
    flex-grow: 1;
- }*/
-/*
+ }
+
+
  .custom-flex {
    display: flex;
    overflow-x: scroll
@@ -135,4 +136,4 @@ body { font-family: sans-serif; }
 
  .custom-card:first-of-type{
    margin-top: 500px
- }*/
+ */
