@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    # @recipes = Recipe.all
+    @recipes = Recipe.all
     @recipes = Recipe.search(params[:search])
     @ingredients = Ingredient.all
   end

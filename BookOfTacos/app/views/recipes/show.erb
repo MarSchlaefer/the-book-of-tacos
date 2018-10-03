@@ -1,17 +1,35 @@
-<h1>Show page Recipe</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookOfTacos</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<p>Title:</p>
-<%= @recipe.title %>
-<p>Description:</p>
-<%= @recipe.description%>
-<p>Number of Likes:</p>
-<%= @recipe.like_count %>
-<p>Rating:</p>
-<%= @recipe.rating %><br><br>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="recipeshowstyle.css" />
+  </head>
+  <body>
+    <h1>Recipe Page</h1>
 
-<p>Ingredients</p>
-<ul>
-  <% @recipe.ingredients.each do |i| %>
-    <li><%= i.name %></li>
-  <% end %>
-</ul>
+    <!-- <p>Title:</p> -->
+    <p> <%= @recipe.title %> </p>
+    <!-- <p>Description:</p> -->
+    <%= @recipe.description%>
+    <p>Number of Likes:</p>
+    <%= @recipe.like_count %>
+    <p>Rating:</p>
+    <%= @recipe.rating %><br>
+    <p>Picture</p>
+    <img src=<%= "/assets/images/#{@recipe.title.downcase.split.join}.jpg" %> />
+
+    <p>Ingredients</p>
+    <ul>
+      <% @recipe.ingredients.each do |i| %>
+        <li><%= i.name %></li>
+        <br/>
+      <% end %>
+    </ul>
+
+  </body>
+</html>

@@ -1,15 +1,31 @@
-<h1>Create User</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookOfTacos</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="usersnewstyle.css" />
+  </head>
+  <body>
+    <div class = "flex-container">
+      <h1>Create User</h1>
 
-<% if flash[:error] %>
-  <% flash[:error].each do |e| %>
-  <%= e %>
-  <% end %>
-<% end %>
+      <% if flash[:error] %>
+        <% flash[:error].each do |e| %>
+        <%= e %>
+        <% end %>
+      <% end %>
 
-<%= form_for @user do |f| %>
-  <p> <%= f.label "Username" %> </p>
-  <%= f.text_field :name %>
-  <p> <%= f.label "Password" %> </p>
-  <%= f.password_field :password %>
-  <%= f.submit "Create New Account" %>
-<% end %>
+      <%= form_for @user do |f| %>
+        <p> <%= f.label "Username" %> </p>
+        <%= f.text_field :name %>
+        <p> <%= f.label "Password" %> </p>
+        <%= f.password_field :password %>
+        <%= f.submit "Create New Account" %>
+      <% end %>
+
+    </div>
+  </body>
+</html>

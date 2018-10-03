@@ -7,9 +7,18 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
+    <nav>
+            <ul>
+              <img class="logo" src="/assets/images/TacoBellParody.jpeg">
+              <li><a class="profile" href="#">Profile</a></li>
+              <li><%= link_to "Recipes", recipes_path %></li>
+              <li><%= link_to "Log-in", new_user_path %></li>
+            </ul>
+        </nav>
     <%= yield %>
   </body>
 </html>
