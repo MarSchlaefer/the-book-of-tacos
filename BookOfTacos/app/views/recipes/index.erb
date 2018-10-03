@@ -1,12 +1,28 @@
-<h1>Recipes Index</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookOfTacos</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<%= form_tag(recipes_path, method: :get) do %>
-  <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
-  <%= submit_tag "Search" %>
-<% end %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="recipesstyle.css" />
+  </head>
+  <body>
+    <h1>Recipes Index</h1>
 
-<ul>
-  <% @recipes.each do |r| %>
-    <li><%= link_to "#{r.title}", recipe_path(r) %></li>
-  <% end %>
-</ul>
+    <ul>
+      <% @recipes.each do |r| %>
+        <li><%= link_to "#{r.title}", recipe_path(r) %></li>
+        <br/>
+      <% end %>
+    </ul>
+
+    <%= form_tag(recipes_path, method: :get) do %>
+      <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
+      <%= submit_tag "Search" %>
+    <% end %>
+    
+  </body>
+</html>

@@ -15,8 +15,8 @@
             <ul>
               <img class="logo" src="/assets/images/TacoBellParody.jpeg">
               <li><a class="profile" href="#">Profile</a></li>
-              <li><a class="recipes" href="#">Recipes</a></li>
-              <li><a class="log-in" href="#">Log In</a></li>
+              <li><%= link_to "Recipes", recipes_path %></li>
+              <li><%= link_to "Log-in", new_user_path %></li>
             </ul>
         </nav>
     <%= yield %>
