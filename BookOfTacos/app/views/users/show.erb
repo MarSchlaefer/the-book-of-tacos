@@ -13,6 +13,8 @@
       <h1>User Profile</h1>
       <h2><%= @user.name %></h2>
 
+      <%= link_to "TALKO BOUT SOME TACO", new_post_path, id: 'btn' %>
+
       <h4>Following:</h4>
       <ul>
         <% if @user.following.length == 0 %>
