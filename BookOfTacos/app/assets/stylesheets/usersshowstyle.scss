@@ -1,3 +1,25 @@
-// body {
-//   color: white;
-// }
+#following, #followers {
+  margin: 20px;
+}
+
+#user-info {
+  margin: 20px;
+}
+
+#user-name {
+  font-size: 2em;
+}
+
+h2, h3 {
+  font-size: 1.5em;
+}
+
+#features {
+  padding: 20px;
+  width: 100%;
+  text-align: right;
+}
+
+#posts, #likes {
+  padding: 30px;
+}
