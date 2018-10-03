@@ -7,7 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="recipesstyle.css" />
+    <link rel="stylesheet" href="recipesstyle.scss" />
   </head>
   <body>
     <h1>Recipes Index</h1>
@@ -21,7 +21,7 @@
     <div id="container">
         <% @recipes.each do |r| %>
           <div class="recipe">
-            <img src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
+            <img id="index_image" src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
             <p><%= link_to "#{r.title}", recipe_path(r) %></p>
             <p id="description"><%= r.description %></p>
           </div>
