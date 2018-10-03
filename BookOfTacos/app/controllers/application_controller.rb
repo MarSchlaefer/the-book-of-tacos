@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
   def authorized
     redirect_to login_path unless logged_in?
   end
+
+  def liked?
+    like.users.include?(current_user)
+  end
+
 end

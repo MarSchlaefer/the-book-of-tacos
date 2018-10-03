@@ -1,52 +1,72 @@
-<h1>User Profile</h1>
-<h2><%= @user.name %></h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BookOfTacos</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="usersshowstyle.css" />
+  </head>
+  <body>
+      <h1>User Profile</h1>
+      <h2><%= @user.name %></h2>
+
+      <h4>Following:</h4>
+      <ul>
+        <% if @user.following.length == 0 %>
+          Make some friends, loser
+        <% else %>
+          <% @user.following.each do |followed| %>
+            <li><%= link_to followed.name, followed  %></li>
+          <% end %>
+        <% end %>
+      </ul>
+      <br>
+
+      <h4>Followed by:</h4>
+      <ul>
+        <% if @user.followers.length == 0 %>
+          You have no followers, what a loser
+        <% else %>
+          <% @user.followers.each do |follower| %>
+          <li><%= link_to follower.name, follower %></li>
+        <% end %>
+        <% end %>
+      </ul>
+
+      <br>
+      <% if (@user != current_user) && !(current_user.following.include? @user) %>
+        <%= render "follow_form" %>
+      <% elsif @user.followers.include? current_user %>
+        <%= render "unfollow_form" %>
+      <% end %>
+
+      <img src="avatar.png" alt="Avatar" class="avatar">
+
+      <%= button_to 'Logout', logout_path, method: :delete %>
+
+      <% if current_user.id == @user_id %>
+      <%= button_to 'Edit this Account', edit_user_path %>
+      <%= button_to 'Delete this Account', user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this account?'} %>
+      <% end %>
 
 
-<h4>Following:</h4>
-<ul>
-  <% if @user.following.length == 0 %>
-    Make some friends, loser
-  <% else %>
-    <% @user.following.each do |followed| %>
-      <li><%= link_to followed.name, followed  %></li>
-    <% end %>
-  <% end %>
-</ul>
-<br>
+      <h3>My Posts</h3>
+      <% @user.posts.each do |post| %>
+      <ul>
+        <li><%= link_to post.name, post%>
+          <img src="" alt="">
+          <%= post.content %></li>
+        <% end %>
+      </ul>
 
-<h4>Followed by:</h4>
-<ul>
-  <% if @user.followers.length == 0 %>
-    You have no followers, what a loser
-  <% else %>
-    <% @user.followers.each do |follower| %>
-    <li><%= link_to follower.name, follower %></li>
-  <% end %>
-  <% end %>
-</ul>
+      <h3>My Likes</h3>
 
-<br>
-<% if (@user != current_user) && !(current_user.following.include? @user) %>
-  <%= render "follow_form" %>
-<% elsif @user.followers.include? current_user %>
-  <%= render "unfollow_form" %>
-<% end %>
-
-
-<img src="avatar.png" alt="Avatar" class="avatar">
-
-<%= button_to 'Logout', logout_path, method: :delete %>
-
-<% if current_user.id == @user_id %>
-<%= button_to 'Edit this Account', edit_user_path %>
-<%= button_to 'Delete this Account', user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this account?'} %>
-<% end %>
-
-
-<h3>My Posts</h3>
-<% @user.posts.each do |post| %>
-  <%= link_to post.name, post%>
-<% end %>
-
-<h3>My Likes</h3>
-  To be determined
+        <% @user.likes.each do |l| %>
+          <%= l.post %> <br>
+          <%= link_to l.post, post_path(l.post) %>
+        <% end %>
+  </body>
+</html>

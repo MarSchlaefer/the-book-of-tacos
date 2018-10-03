@@ -25,7 +25,7 @@ r5 = Recipe.create(title: 'Steak Sweet Potato Apple Tacos')
 i6 = Ingredient.create(name: 'Chopped steak')
 RecipeIngredient.create(recipe_id: r5.id, ingredient_id: i6.id)
 
-r6 = Recipe.create(title: 'Morrocan Lamb Tacos')
+r6 = Recipe.create(title: 'Moroccan Lamb Tacos')
 i7 = Ingredient.create(name: 'Moroccan lamb')
 RecipeIngredient.create(recipe_id: r6.id, ingredient_id: i7.id)
 

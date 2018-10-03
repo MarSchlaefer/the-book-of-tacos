@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :recipe
   has_many :comments
+  has_many :likes
 
   validates :title, presence: true
   validates :title, length: {in: 2..50}
