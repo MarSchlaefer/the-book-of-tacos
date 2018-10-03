@@ -7,7 +7,7 @@
     <p>Content: <%= @post.content %></p>
   </div>
 
-  <div class="">
+  <div class="post_content">
     <h4>Comments</h4>
       <ul><% @post.comments.each do |c| %>
         <li><%= link_to c.user.name, user_path(c.user) %> <br> <%= c.content %> </li>

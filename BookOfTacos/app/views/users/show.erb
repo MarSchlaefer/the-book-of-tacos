@@ -13,6 +13,8 @@
       <h1>User Profile</h1>
       <h2><%= @user.name %></h2>
 
+      <%= link_to "TALKO BOUT SOME TACO", new_post_path, id: 'btn' %>
+
       <h4>Following:</h4>
       <ul>
         <% if @user.following.length == 0 %>
@@ -55,18 +57,64 @@
 
       <h3>My Posts</h3>
       <% @user.posts.each do |post| %>
-      <ul>
-        <li><%= link_to post.name, post%>
-          <img src="" alt="">
-          <%= post.content %></li>
+      <div class="ui link cards">
+        <div class="card">
+          <div class="image">
+            <img src="/images/avatar2/large/matthew.png">
+          </div>
+          <div class="content">
+            <div class="header"><%= post.title %></div>
+            <div class="meta">
+              <%= link_to post.recipe.title, post.recipe %>
+            </div>
+            <div class="description">
+              <%= post.content[0..50] %>...
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <%= post.comments.count %> Comment(s)
+            </span>
+            <span>
+              <i class="user icon"></i>
+              <%= post.likes.count %> Likes
+            </span>
+          </div>
+        </div>
         <% end %>
-      </ul>
+
+
 
       <h3>My Likes</h3>
 
         <% @user.likes.each do |l| %>
-          <%= l.post %> <br>
-          <%= link_to l.post, post_path(l.post) %>
+        <div class="ui link cards">
+          <div class="card">
+            <div class="image">
+              <img src="/images/avatar2/large/matthew.png">
+            </div>
+            <div class="content">
+              <div class="header">l.post.title</div>
+              <div class="meta">
+                <%= link_to l.post.recipe.title, l.post.recipe %>
+              </div>
+              <div class="description">
+                <%= post.content[0..50] %>...
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                <%= post.comments.count %> Comment(s)
+              </span>
+              <span>
+                <i class="user icon"></i>
+                <%= post.likes.count %> Likes
+              </span>
+            </div>
+          </div>
+        </div>
         <% end %>
+
+        
   </body>
 </html>
