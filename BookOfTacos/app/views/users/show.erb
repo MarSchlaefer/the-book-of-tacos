@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>BookOfTacos</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="usersshowstyle.css" />
-  </head>
   <body>
+    <!-- <script src="/path/to/flickity.pkgd.min.js"></script> -->
       <h1>User Profile</h1>
       <h2><%= @user.name %></h2>
 
@@ -56,40 +47,69 @@
 
 
       <h3>My Posts</h3>
-      <% @user.posts.each do |post| %>
-      <div class="ui link cards">
-        <div class="card">
+      <div class="gallery js-flickity" data-flickity='{ "cellAlign": "left", "contain": true }'>
+        <div class="gallery-cell ui card">
           <div class="image">
             <img src="/images/avatar2/large/matthew.png">
           </div>
           <div class="content">
-            <div class="header"><%= post.title %></div>
+            <div class="header"><%= Post.last.title %></div>
             <div class="meta">
-              <%= link_to post.recipe.title, post.recipe %>
+              <%= link_to Post.last.recipe.title, Post.last.recipe %>
             </div>
             <div class="description">
-              <%= post.content[0..50] %>...
+              <%= Post.last.content[0..50] %>...
             </div>
           </div>
           <div class="extra content">
             <span class="right floated">
-              <%= post.comments.count %> Comment(s)
+              <%= Post.last.comments.count %> Comment(s)
             </span>
             <span>
               <i class="user icon"></i>
-              <%= post.likes.count %> Likes
+              <%= Post.last.likes.count %> Likes
             </span>
           </div>
         </div>
+        <div class="gallery-cell">
+        </div>
+
+        <% @user.posts.each do |post| %>
+          <div class="gallery-cell ui card">
+            <div class="image">
+              <img src="/images/avatar2/large/matthew.png">
+            </div>
+            <div class="content">
+              <div class="header"><%= post.title %></div>
+              <div class="meta">
+                <%= link_to post.recipe.title, post.recipe %>
+              </div>
+              <div class="description">
+                <%= post.content[0..50] %>...
+              </div>
+            </div>
+            <div class="extra content">
+              <span class="right floated">
+                <%= post.comments.count %> Comment(s)
+              </span>
+              <span>
+                <i class="user icon"></i>
+                <%= post.likes.count %> Likes
+              </span>
+            </div>
+          </div>
         <% end %>
+      </div>
+      <br>
+      <br>
 
 
 
       <h3>My Likes</h3>
 
+      <div class="main-carousel js-flickity">
         <% @user.likes.each do |l| %>
-        <div class="ui link cards">
-          <div class="card">
+          <div class="ui card custom-card carousel-cell">
             <div class="image">
               <img src="/images/avatar2/large/matthew.png">
             </div>
@@ -112,9 +132,9 @@
               </span>
             </div>
           </div>
-        </div>
         <% end %>
+      </div>
 
-        
+
   </body>
 </html>
