@@ -4,9 +4,11 @@
     <p id="title"><%= @post.title %></p>
     <div class="recipe">
       <%= link_to @post.recipe.title, @post.recipe %>
+      <a class="recipe" href=<%="/recipes/#{Recipe.find_by(id: @post.recipe.id)}"%> >
     </div>
 
     <p id="author-name"><%= @post.user.name %></p>
+    <a class="recipe" href=<%="/users/#{@user.id}"%> >
     <p id="post-timestamp"><%= @post.created_at %></p>
     <p id="content"><%= @post.content %></p>
   </div>
