@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
-    @user.picture = "/assets/images/pepes/pepe#{rand(1..4)}.jpg"
+    @user.picture = "/assets/images/pepes/pepe#{rand(1..7)}.jpg"
     @user.save
     redirect_to @user
   end
