@@ -63,15 +63,8 @@
     </div>
 
 
-<<<<<<< HEAD
     <h3>My Posts</h3>
     <div class="gallery js-flickity" data-flickity='{ "cellAlign": "center", "contain": true }'>
-=======
-
-
-    <div id="posts" class="gallery-cell">
-      <h3 class="header">My Posts</h3>
->>>>>>> afa7ef4c06df4a78b8d156357e5175767aeababa
       <% @user.posts.each do |post| %>
         <div class="gallery-cell ui card" style="margin-top: 14px; margin-right: 20px;">
           <div class="image">
@@ -88,19 +81,11 @@
           </div>
           <div class="extra content">
             <span class="right floated">
-<<<<<<< HEAD
               <%= link_to "#{post.comments.count} Comment(s)", post %>
             </span>
             <span>
               <i class="user icon"></i>
               <%= post.likes.count %> Like(s)
-=======
-              <%= Post.last.comments.count %> Comment(s)
-            </span>
-            <span>
-              <i class="user icon"></i>
-              <%= Post.last.likes.count %> Likes
->>>>>>> afa7ef4c06df4a78b8d156357e5175767aeababa
             </span>
           </div>
         </div>
@@ -109,7 +94,6 @@
     </div>
 
 
-<<<<<<< HEAD
     <h3>My Likes</h3>
     <div class="gallery js-flickity" data-flickity='{ "cellAlign": "center", "contain": true }'>
       <% @user.likes.each do |like| %>
@@ -124,25 +108,6 @@
             </div>
             <div class="description">
               <%= link_to like.post.content[0..50], like.post %> ...
-=======
-
-
-      <div id="likes" class="main-carousel js-flickity">
-        <h3 class="header">My Likes</h3>
-          <% @user.likes.each do |l| %>
-          <div class="ui card custom-card carousel-cell">
-            <div class="image">
-              <img src="/images/avatar2/large/matthew.png">
-            </div>
-            <div class="content">
-              <div class="header">l.post.title</div>
-              <div class="meta">
-                <%= link_to l.post.recipe.title, l.post.recipe %>
-              </div>
-              <div class="description">
-                <%= post.content[0..50] %>...
-              </div>
->>>>>>> afa7ef4c06df4a78b8d156357e5175767aeababa
             </div>
           </div>
           <div class="extra content">
@@ -154,13 +119,8 @@
               <%= like.post.likes.count %> Like(s)
             </span>
         </div>
-<<<<<<< HEAD
       <% end %>
     </div>
-=======
-        <% end %>
-      </div>
->>>>>>> afa7ef4c06df4a78b8d156357e5175767aeababa
 
   </body>
 </html>

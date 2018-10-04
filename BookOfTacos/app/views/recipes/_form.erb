@@ -8,9 +8,11 @@
 <% end %>
 
 <%= form_for @recipe do |f| %>
-  <p> <%= f.label "Title" %> </p>
+  <p><%= f.label :title %></p>
   <%= f.text_field :title %>
-  <p> <%= f.label "Description" %> </p>
-  <%= f.text_area :description %>
-  <%= f.submit "Submit Recipe"%>
+  <p><%= f.label :ingredients %></p>
+  <%= f.text_field :ingredients %>
+  <p> <%= f.label :description %> </p>
+  <%= f.text_area :description %><br>
+  <%= f.submit "Submit Recipe" %>
 <% end %>

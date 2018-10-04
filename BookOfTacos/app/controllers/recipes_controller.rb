@@ -17,6 +17,10 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.create(recipe_params)
+    params[:ingredients].split(", ").each do |ing|
+      ingredient = Ingredient.find_or_create_by(name: ing)
+      ingredient.recipe = @recipe
+    end
     if @recipe.valid?
       redirect_to @recipe
     else
@@ -52,5 +56,6 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :description, :like_count, :rating, :search)
   end
+
 
 end

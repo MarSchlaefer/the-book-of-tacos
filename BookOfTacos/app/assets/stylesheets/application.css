@@ -15,41 +15,64 @@
  */
 
 
-body {
-  /* background: linear-gradient(rgb(255,255,255), rgb(243,226, 198)); */
-  background-image: url("https://i.imgur.com/VUakDX1.jpg");
-  /* padding-left: 200px;
-  padding-right: 200px; */
- }
+header {
+  margin: 0;
+  padding: 0;
+}
 
-#contents {
-  padding-left: 215px;
-  padding-right: 215px;
- }
+body {
+  background-image: url("https://i.imgur.com/VUakDX1.jpg");
+}
 
 footer {
   margin: 100px;
  }
 
-nav {
- display: flex;
- align-items: center;
- background-color: white;
- width: auto;
- letter-spacing: 2px;
- padding-left: 0px;
-
+#contents {
+  padding-left: 215px;
+  padding-right: 215px;
 }
 
+.nav {
+  background-color: white;
+  width: 100%;
+  letter-spacing: 2px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 215px;
+  padding-right: 215px;
+}
 
+.nav li {
+  display: inline;
+  /* margin-left: 20; */
+  /* margin-right: 20; */
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  font-size: 1.4em;
+}
+
+.nav a {
+  display: inline-block;
+  margin: 12px;
+}
+
+a:hover {
+  color: orange;
+}
 
 li {
  list-style: none;
 }
 
-* { box-sizing: border-box; }
-
-body { font-family: sans-serif; }
+* {
+  box-sizing: border-box;
+  font-family: 'IBM Plex Mono', monospace;
+  color: #863E31;
+}
 
 a {
  color: inherit;
@@ -59,6 +82,14 @@ a {
 .divider {
   font-size: 18px;
   color: #863E31;
+}
+
+#banner img {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 400px;
 }
 
 .carousel {
@@ -71,13 +102,6 @@ a {
   margin-right: 10px;
   background: #8C8;
   border-radius: 10px;
-}
-
-
-* {
-  font-family: 'IBM Plex Mono', monospace;
-  color: #863E31;
-
 }
 
 #following, #followers {
@@ -108,6 +132,8 @@ h2, h3 {
   padding: 30px;
 }
 
+/* move to posts show css */
+
 .comment-timestamp {
   font-size: 0.8em;
   color: #AAA;
@@ -130,9 +156,4 @@ h2, h3 {
 
 .my-posts {
   padding: 80px;
-}
-
-header {
-  margin: 0;
-  padding: 0;
 }

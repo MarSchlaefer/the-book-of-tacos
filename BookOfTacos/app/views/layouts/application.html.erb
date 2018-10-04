@@ -28,7 +28,7 @@
   <body>
     <header>
       <nav id="nav-bar">
-        <ul>
+        <ul class="nav">
           <% if !!current_user %>
             <li><a class="profile" href="<%= user_path(current_user) %>">profile</a></li>
           <% else %>
@@ -40,6 +40,12 @@
           <li><%= link_to "talko bout taco", new_post_path %></li>
         </ul>
       </nav>
+
+      <div id="banner">
+        <img src="/assets/images/headertacos-dark.jpg" />
+        <p>TACOSSSSSZZZ</p>
+      </div>
+
     </header>
 
 

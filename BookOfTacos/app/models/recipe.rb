@@ -11,7 +11,6 @@ class Recipe < ApplicationRecord
 
 
   def self.search(search)
-    # byebug
     if search
       ingredient = Ingredient.find_by(id: search)
       if ingredient
