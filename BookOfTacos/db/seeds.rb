@@ -87,9 +87,9 @@ RecipeIngredient.create(recipe_id: r17.id, ingredient_id: i12.id)
 RecipeIngredient.create(recipe_id: r17.id, ingredient_id: i25.id)
 
 p1 = Post.create(title: "Peter Post1", content: "BIRD IS THE WORD!", user_id: 1, recipe_id: r1.id)
-p1 = Post.create(title: "Peter Post2", content: "BIRD IS THE WORD! X2", user_id: 1, recipe_id: r2.id)
-p1 = Post.create(title: "Quagmire Post 1", content: "BIRD IS NOT THE WORD YOU IDIOT", user_id: 2, recipe_id: r3.id)
-p1 = Post.create(title: "Cleaveland Post 1", content: "NO NO NO NO NOOOO", user_id: 4, recipe_id: r4.id)
+p2 = Post.create(title: "Peter Post2", content: "BIRD IS THE WORD! X2", user_id: 1, recipe_id: r2.id)
+p3 = Post.create(title: "Quagmire Post 1", content: "BIRD IS NOT THE WORD YOU IDIOT", user_id: 2, recipe_id: r3.id)
+p4 = Post.create(title: "Joe Post 1", content: "This taco makes me feel I can walk again!", user_id: 3, recipe_id: r4.id)
 
 # c1 = Comment.create(content: "NO ITS NOT", post_id: p1.id, )
 

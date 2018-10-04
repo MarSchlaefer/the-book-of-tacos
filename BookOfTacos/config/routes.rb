@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :recipes
   resources :comments
   resources :posts
+  resources :likes, only: [:create, :destroy]
   resources :users, except: [:index] do
     member do
       get :following, :followers

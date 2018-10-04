@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="recipeshowstyle.css" />
   </head>
   <body>
-    <h1><%= @recipe.title %></h1>
+    <div id="header">
+      <img id="recipe_image" src=<%= "/assets/images/#{@recipe.title.downcase.split.join}.jpg" %> />
+      <p><%= @recipe.title %></p>
+    </div>
     <%= link_to "TALKO BOUT DIS TACO", new_post_path({id: @recipe.id}) %>
 
     <%= @recipe.description%>
@@ -18,8 +21,7 @@
     <%= @recipe.like_count %>
     <p>Rating:</p>
     <%= @recipe.rating %><br>
-    <p>Picture</p>
-    <img id="recipe_image" src=<%= "/assets/images/#{@recipe.title.downcase.split.join}.jpg" %> />
+
 
     <p>Ingredients</p>
     <ul>

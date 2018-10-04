@@ -16,7 +16,10 @@
 
 * { box-sizing: border-box; }
 
-body { font-family: sans-serif; }
+body {
+  font-family: sans-serif;
+  background: white;
+}
 
 .carousel {
   background: #EEE;
@@ -66,13 +69,4 @@ body { font-family: sans-serif; }
    text-decoration: none;
    color: black;
    font-size: 15px
- }
-
- /*a {
-   color:inherit;
-   text-decoration: none;
- }*/
-
- body {
-   background: white;
  }

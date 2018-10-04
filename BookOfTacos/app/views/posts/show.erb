@@ -1,11 +1,31 @@
-<div class="post-text">
-  <p id="title"><%= @post.title %></p>
-  <div class="recipe">
-    <%= link_to @post.recipe.title, @post.recipe %>
-  </div>
 
-  <p id="author-name"><%= @post.user.name %></p>
-  <p id="content"><%= @post.content %></p>
+<center>
+  <div class="post-text" >
+    <p id="title"><%= @post.title %></p>
+    <div class="recipe">
+      <%= link_to @post.recipe.title, @post.recipe %>
+      <a class="recipe" href=<%="/recipes/#{Recipe.find_by(id: @post.recipe.id)}"%> >
+    </div>
+
+    <p id="author-name"><%= @post.user.name %></p>
+    <a class="recipe" href=<%="/users/#{@user.id}"%> >
+    <p id="post-timestamp"><%= @post.created_at %></p>
+    <p id="content"><%= @post.content %></p>
+  </div>
+</center>
+
+<div class="like-button">
+  <% if current_user.likes.map {|like| like.post}.include? @post %>
+  <%= form_for(current_user.likes.find_by(post_id: @post.id), html: { method: :delete }) do |f| %>
+  <%= f.submit "Unlike", class: "unlike-btn" %>
+  <% end %>
+  <% else %>
+  <%= form_for @like do |f| %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit "Like", class: "like-btn" %>
+  <% end %>
+  <% end %>
 </div>
 
 <div class="post-comments">
@@ -14,12 +34,15 @@
   <% else %>
     <h4 id="comments">Comments</h4>
     <ol><% @post.comments.each do |comment| %>
-      <div class="comment"><%= link_to comment.user.name, user_path(comment.user), {class: "comment-author"} %><br /><%= comment.content %> </div>
+      <div class="comment">
+        <span class="comment-author-name"><%= link_to comment.user.name, user_path(comment.user) %>
+        </span>
+      <span class="comment-content"><%= comment.content %></span>
+      <span class="comment-timestamp"><%= comment.created_at.to_s[0..15] %></span>
+      </div>
       <% end %>
     </ol>
   <% end %>
-
-
   <%= form_for @comment do |f| %>
     <%= f.label :content, "New Comment" %>
     <%= f.text_field :content %>
@@ -28,9 +51,3 @@
     <%= f.submit %>
   <% end %>
 </div>
-
-<!-- if liked?
-  then red heart
-else
-  white heart
-end -->
