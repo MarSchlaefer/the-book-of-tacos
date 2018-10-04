@@ -23,16 +23,16 @@
 
       <ul>
         <% if !!current_user %>
-          <li><a class="profile" href="<%= user_path(current_user) %>">profile</a></li>
+          <li><a class="profile" href="<%= user_path(current_user) %>">Profile</a></li>
         <% else %>
-          <li><%= link_to "login", new_user_path %></li>
+          <li><%= link_to "Login", new_user_path %></li>
         <% end %>
         <li class="divider">|</li>
-        <li><%= link_to "recipes", recipes_path %></li>
+        <li><%= link_to "Write", new_post_path %></li>
         <li class="divider">|</li>
-        <li><%= link_to "write", new_post_path %></li>
         <li><%= link_to "Recipes", recipes_path %></li>
-        <li><%= link_to "Comments", comments_path %></li>
+        <li class="divider">|</li>
+        <li><%= link_to "Posts", posts_path %></li>
       </ul>
 
         </nav>
