@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
 
   def show
+    
   end
 
   def new
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
+    @user.picture = "/assets/images/pepes/pepe#{rand(1..7)}.jpg"
+    @user.save
     redirect_to @user
   end
 
