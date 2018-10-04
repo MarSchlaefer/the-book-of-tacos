@@ -45,7 +45,7 @@
         <%= render "unfollow_form" %>
       <% end %>
 
-      <img src="avatar.png" alt="Avatar" class="avatar">
+      <img id="profile_pic" src=<%= @user.picture %>   alt="Avatar" class="avatar">
 
       <%= button_to 'Logout', logout_path, method: :delete %>
 
@@ -115,6 +115,6 @@
         </div>
         <% end %>
 
-        
+
   </body>
 </html>

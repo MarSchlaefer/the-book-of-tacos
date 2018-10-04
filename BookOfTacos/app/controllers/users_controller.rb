@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
-    # byebug
+    @user.picture = "/assets/images/pepes/pepe#{rand(1..4)}.jpg"
+    @user.save
     redirect_to @user
   end
 

@@ -3,6 +3,8 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    # @posts = Post.search(params[:search])
+    @users = User.all
   end
 
   def show
@@ -48,7 +50,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :comments, :user_id, :recipe_id)
+    params.require(:post).permit(:title, :content, :comments, :user_id, :recipe_id, :search)
   end
 
 end
