@@ -97,7 +97,18 @@ i30 = Ingredient.create(name: 'Spaghetti squash')
 RecipeIngredient.create(recipe_id: r17.id, ingredient_id: i29.id)
 RecipeIngredient.create(recipe_id: r17.id, ingredient_id: i30.id)
 
+# u1 = User.create(name: "Peter")
+# u2 = User.create(name: "Quagmire")
+# u3 = User.create(name: "Joe")
+# u4 = User.create(name: "Cleaveland")
+# u5 = User.create(name: "Louis")
 
+p1 = Post.create(title: "title1", content: "BIRD IS THE WORD!", user_id: u1.id, recipe_id: r1.id)
+p1 = Post.create(title: "title2", content: "BIRD IS THE WORD! X2", user_id: u1.id, recipe_id: r2.id)
+p1 = Post.create(title: "title3", content: "BIRD IS THE WORD! X3", user_id: u1.id, recipe_id: r3.id)
+p1 = Post.create(title: "title4", content: "this is content", user_id: u2.id, recipe_id: r4.id)
+
+c1 = Comment.create(content: "NO ITS NOT", post_id: p1.id, )
 
 puts "TACOS SEEDED"
 

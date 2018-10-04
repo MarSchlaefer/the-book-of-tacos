@@ -7,23 +7,32 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="recipesstyle.css" />
+    <link rel="stylesheet" href="recipesstyle.scss" />
   </head>
   <body>
     <h1>Recipes Index</h1>
+    <div id="header">
+      <img src=<%= "/assets/images/headertacos.jpg" %> />
+      <p>TACOSSSSSZZZ</p>
+    </div>
+    <div id="headline">
+      <p>Take me to Taco Town!</p>
+    </div>
     <div id="container">
         <% @recipes.each do |r| %>
           <div class="recipe">
+            <img id="index_image" src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
             <p><%= link_to "#{r.title}", recipe_path(r) %></p>
-            <img src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
-            <p><%= r.description %></p>
+            <p id="description"><%= r.description %></p>
           </div>
         <% end %>
-
-        <%= form_tag(recipes_path, method: :get) do %>
-          <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
-          <%= submit_tag "Search" %>
-        <% end %>
-      </div>
+    </div>
+    <div id="button">
+      <%= form_tag(recipes_path, method: :get) do %>
+        <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
+        <%= submit_tag "Search" %>
+      <% end %>
+    </div>
+    <br />
   </body>
 </html>
