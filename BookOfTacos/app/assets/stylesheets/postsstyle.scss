@@ -18,9 +18,9 @@
   margin: 10px;
 }
 
-#index_image {
-  height: 60%;
-  width: 100%;
+#posts_index_image {
+  height: 150px;
+  width: 150px;
 }
 
 #header{
@@ -46,12 +46,20 @@
   font-size: 50px;
 }
 
-#description {
-  font-size: 10px;
+#post_title {
+  font-size: 20px;
+}
+
+#post_content {
+  font-size: 15px;
 }
 
 #button {
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+.post:hover {
+  transform: scale(1.5)
 }

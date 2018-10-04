@@ -20,11 +20,14 @@
     </div>
     <div id="container">
         <% @recipes.each do |r| %>
-          <div class="recipe">
-            <img id="index_image" src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
-            <p><%= link_to "#{r.title}", recipe_path(r) %></p>
-            <p id="description"><%= r.description %></p>
-          </div>
+          <a class="recipe" href=<%="/recipes/#{r.id}"%> >
+            <div>
+              <img id="recipes_index_image" src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
+              <!-- <p><%= link_to "#{r.title}", recipe_path(r) %></p> -->
+              <p id="recipe_title"><%= r.title %></p>
+              <p id="recipe_description"><%= r.description %></p>
+            </div>
+          </a>
         <% end %>
     </div>
     <div id="button">

@@ -48,8 +48,19 @@
       <%= render "unfollow_form" %>
     <% end %>
 
+
     <div id="posts" class="gallery-cell">
       <h3 class="header">My Posts</h3>
+
+      <img id="profile_pic" src=<%= @user.picture %>   alt="Avatar" class="avatar">
+
+      <%= button_to 'Logout', logout_path, method: :delete %>
+
+      <% if current_user.id == @user_id %>
+      <%= button_to 'Edit this Account', edit_user_path %>
+      <%= button_to 'Delete this Account', user_path(@user), method: :delete, data: {confirm: 'Are you sure you want to delete this account?'} %>
+      <% end %>
+
       <% @user.posts.each do |post| %>
       <div class="ui link cards">
         <div class="card">
@@ -110,7 +121,5 @@
         </div>
         <% end %>
       </div>
-
-
   </body>
 </html>
