@@ -5,18 +5,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="usersshowstyle.css" />
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
   </head>
   <body>
-    <div class="features">
+    <div class="features" align="center" style="margin-top: 30px">
       <%= link_to "TALKO BOUT SOME TACO", new_post_path, id: 'btn' %>
     </div>
 
-    <div id="user-info">
+    <div id="user-info" align="center">
       <h2 id="user-name">@<%= @user.name %></h2>
-      <img src="avatar.png" alt="Avatar" class="avatar">
+      <img src="/assets/images/avatar.jpg" alt="Avatar" class="avatar">
 
       <%= button_to 'Logout', logout_path, method: :delete %>
 
@@ -26,20 +28,20 @@
       <% end %>
     </div>
 
-    <div id="following">
+    <div id="following" align="center">
       <h3>Following:</h3>
-      <ul>
+      <div>
         <% if @user.following.length == 0 %>
           Make some friends, loser
         <% else %>
           <% @user.following.each do |followed| %>
-            <li class="followed"><%= link_to followed.name, followed  %></li>
+            <div class="followed"><%= link_to followed.name, followed  %></div>
           <% end %>
         <% end %>
-      </ul>
+      </div>
     </div>
 
-    <div id="followers">
+    <div id="followers" align="center">
       <h3>Followed by:</h3>
       <ul>
         <% if @user.followers.length == 0 %>
@@ -52,19 +54,21 @@
       </ul>
     </div>
 
-    <% if (@user != current_user) && !(current_user.following.include? @user) %>
+    <div class="follow-button" align="center">
+      <% if (@user != current_user) && !(current_user.following.include? @user) %>
       <%= render "follow_form" %>
-    <% elsif @user.followers.include? current_user %>
+      <% elsif @user.followers.include? current_user %>
       <%= render "unfollow_form" %>
-    <% end %>
+      <% end %>
+    </div>
 
-    <div id="posts">
-      <h3 class="header">My Posts</h3>
+
+    <h3>My Posts</h3>
+    <div class="gallery js-flickity" data-flickity='{ "cellAlign": "center", "contain": true }'>
       <% @user.posts.each do |post| %>
-      <div class="ui link cards">
-        <div class="card">
+        <div class="gallery-cell ui card" style="margin-top: 14px; margin-right: 20px;">
           <div class="image">
-            <img src="/images/avatar2/large/matthew.png">
+            <img src="/assets/images/bajafishtacos.jpg">
           </div>
           <div class="content">
             <div class="header"><%= link_to post.title, post %></div>
@@ -72,16 +76,16 @@
               <%= link_to post.recipe.title, post.recipe %>
             </div>
             <div class="description">
-              <%= link_to post.content[0..50], post %>...
+              <%= link_to post.content[0..50], post %> ...
             </div>
           </div>
           <div class="extra content">
             <span class="right floated">
-              <%= post.comments.count %> Comment(s)
+              <%= link_to "#{post.comments.count} Comment(s)", post %>
             </span>
             <span>
               <i class="user icon"></i>
-              <%= post.likes.count %> Likes
+              <%= post.likes.count %> Like(s)
             </span>
           </div>
         </div>
@@ -89,39 +93,34 @@
     </div>
 
 
-
-
-    <div id="likes">
-      <h3 class="header">My Likes</h3>
-      <% @user.likes.each do |l| %>
-      <div class="ui link cards">
-        <div class="card">
+    <h3>My Likes</h3>
+    <div class="gallery js-flickity" data-flickity='{ "cellAlign": "center", "contain": true }'>
+      <% @user.likes.each do |like| %>
+        <div class="gallery-cell ui card" style="margin-top: 14px; margin-right: 20px;">
           <div class="image">
-            <img src="/images/avatar2/large/matthew.png">
+            <img src="/assets/images/bajafishtacos.jpg">
           </div>
           <div class="content">
-            <div class="header">l.post.title</div>
+            <div class="header"><%= link_to like.post.title, like.post %></div>
             <div class="meta">
-              <%= link_to l.post.recipe.title, l.post.recipe %>
+              <%= link_to like.post.title, like.post %>
             </div>
             <div class="description">
-              <%= post.content[0..50] %>...
+              <%= link_to like.post.content[0..50], like.post %> ...
             </div>
           </div>
           <div class="extra content">
             <span class="right floated">
-              <%= post.comments.count %> Comment(s)
+              <%= link_to "#{like.post.comments.count} Comment(s)", like.post %>
             </span>
             <span>
               <i class="user icon"></i>
-              <%= post.likes.count %> Likes
+              <%= like.post.likes.count %> Like(s)
             </span>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
     </div>
-
 
   </body>
 </html>
