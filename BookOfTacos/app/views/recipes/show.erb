@@ -1,35 +1,72 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>BookOfTacos</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<header>
+  <div class="container">
+    <img class="banner" src=<%="/assets/images/#{@recipe.title.downcase.split.join}.jpg"%>>
+    <div class="tagline"><%= @recipe.title %></div >
+  </div>
+</header>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="recipeshowstyle.css" />
-  </head>
-  <body>
-    <div id="header">
-      <img id="recipe_image" src=<%= "/assets/images/#{@recipe.title.downcase.split.join}.jpg" %> />
-      <p><%= @recipe.title %></p>
-    </div>
-    <%= link_to "TALKO BOUT DIS TACO", new_post_path({id: @recipe.id}) %>
+<div class="recipe-info">
+  <p>🌮 This taco has been liked <%= @recipe.posts.map {|post| post.likes.length }.reduce(0, :+) %> time(s) 🌮</p>
+</div>
 
-    <%= @recipe.description%>
-    <p>Number of Likes:</p>
-    <%= @recipe.like_count %>
-    <p>Rating:</p>
-    <%= @recipe.rating %><br>
-
-
-    <p>Ingredients</p>
-    <ul>
+<div class="recipe-container">
+  <div class="recipe-ingredients" style="padding-top: 19.6px; font-size: 1.4em;">
+    <ul style="margin: 0">
+      <p>You'll need:</p>
       <% @recipe.ingredients.each do |i| %>
-        <li><%= i.name %></li>
-        <br/>
+      <li>🌮 <%= i.name %></li>
       <% end %>
     </ul>
+  </div>
 
-  </body>
-</html>
+  <div class="recipe-description" style="padding-top: 19.6px; font-size: 1.4em;">
+    <p>Instructions</p>
+    <ol>
+      <% @recipe.parse_description.each_with_index do |line, i| %>
+      <li><%= "#{i + 1}. #{line}" %></li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+
+<div class="make-post">
+  <%= link_to "TALKO BOUT DIS TACO", new_post_path({id: @recipe.id}), { class: "ui button" } %>
+</div>
+
+<div class="recipe-posts">
+  <div class="recipe-post-header">
+    Posts about this recipe:
+  </div>
+  <div class="contents" style="margin-left: 15%; margin-right: 15%;">
+    <div class="grid-container" style="margin: 0">
+      <% @recipe.posts.each do |post| %>
+      <div class="ui card" style="margin-top: 14px; margin-bottom: 14px; margin-right: 10px; margin-left: 10px; height: 375px;">
+
+        <div class="image" style="height: 178px; overflow: hidden;">
+          <img src=<%="/assets/images/#{post.recipe.title.downcase.split.join}.jpg"%>>
+        </div>
+
+        <div class="content">
+          <div class="header"><%= link_to post.title, post %></div>
+          <div class="meta">
+            <%= link_to post.recipe.title, post.recipe %>
+          </div>
+          <div class="description">
+            <%= link_to post.content[0..50], post %> ...
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            <%= link_to "#{post.comments.count} Comment(s)", post %>
+          </span>
+          <span>
+            <i class="user icon"></i>
+            <%= post.likes.count %> Like(s)
+          </span>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

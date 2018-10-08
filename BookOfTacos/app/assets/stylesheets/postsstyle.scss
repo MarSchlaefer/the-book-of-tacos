@@ -1,8 +1,7 @@
-#container {
+.container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  // height: 5000px;
   width: 100%;
   background-color: lightgray;
   justify-content: center;
@@ -61,5 +60,17 @@
 }
 
 .post:hover {
-  transform: scale(1.5)
+  filter: brightness(80%);
+}
+
+
+
+.card:hover {
+  /* transform: scale(1.1) */
+  background: rgba(218, 38, 88, 0.5);
+
+}
+
+.card:hover a {
+  color: white;
 }

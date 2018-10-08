@@ -1,41 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>BookOfTacos</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<header>
+  <div class="container">
+    <img class="banner" src="/assets/images/headertacos-muted.jpg"/>
+    <div class="tagline">tacos.</div >
+  </div>
+</header>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="recipesstyle.css" />
-  </head>
-  <body>
-    <h1>Recipes Index</h1>
-    <div id="recipes_header">
-      <img src=<%= "/assets/images/headertacos.jpg" %> />
-      <p>TACOSSSSSZZZ</p>
+<div class="contents" style="margin-left: 215px; margin-right: 215px;">
+  <div style="margin: 60px; text-align: left;">
+    <div style="font-size: 2em;">take me to taco town!</div>
+  </div>
+
+  <div>
+    <%= form_tag(recipes_path, method: :get) do %>
+    <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
+    <%= submit_tag "Search by ingredient", class: "ui button" %>
+    <% end %>
+  </div>
+
+  <div class="grid-container">
+    <% @recipes.each do |r| %>
+    <a href=<%="/recipes/#{r.id}"%> >
+    <div class="ui card" style="margin-top: 14px; margin-bottom: 14px; margin-right: 10px; margin-left: 10px; height: 375px;">
+      <div class="image" style="height: 178px; overflow: hidden;">
+
+        <img src=<%="/assets/images/#{r.title.downcase.split.join}.jpg"%>>
+      </div>
+      <div class="content">
+        <a class="header"><%= link_to r.title, r %></a>
+        <div class="description">
+          <%= r.description[0..150] %> ...
+        </div>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="user icon"></i>
+          <%= r.posts.map { |post| post.likes.count }.reduce(0, :+) %> likes
+        </a>
+      </div>
     </div>
-    <div id="recipes_headline">
-      <p>Take me to Taco Town!</p>
-    </div>
-    <div id="recipes_container">
-        <% @recipes.each do |r| %>
-          <a class="recipe" href=<%="/recipes/#{r.id}"%> >
-            <div>
-              <img id="recipes_index_image" src=<%= "/assets/images/#{r.title.downcase.split.join}.jpg" %> />
-              <!-- <p><%= link_to "#{r.title}", recipe_path(r) %></p> -->
-              <p id="recipe_title"><%= r.title %></p>
-              <p id="recipe_description"><%= r.description %></p>
-            </div>
-          </a>
-        <% end %>
-    </div>
-    <div id="button">
-      <%= form_tag(recipes_path, method: :get) do %>
-        <%= select_tag :search, options_for_select(@ingredients.map {|i| [i.name, i.id]}) %>
-        <%= submit_tag "Search" %>
-      <% end %>
-    </div>
-    <br />
-  </body>
-</html>
+    </a>
+    <% end %>
+
+  </div>
+
+
+</div>

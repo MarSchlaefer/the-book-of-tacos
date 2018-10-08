@@ -4,3 +4,49 @@
 .post-text {
   padding: 30px;
 }
+
+.recipe-link img {
+  border-radius: 12px;
+  border: solid 5px rgba(255,255,255,0.5);
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.post-body {
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 2em;
+  position: absolute;
+}
+
+.author-info {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.author-name {
+  font-size: 1em;
+  position: absolute;
+  bottom: 36px;
+}
+
+.post-timestamp {
+  position: absolute;
+  opacity: 0.4;
+  bottom: 10px;
+}
+
+.extra {
+}
+
+.edit_comment {
+  color: rgba(232, 111, 29, 0.8);
+  font-size: 0.7em;
+}

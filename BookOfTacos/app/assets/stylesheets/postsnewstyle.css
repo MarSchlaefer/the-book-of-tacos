@@ -1,0 +1,13 @@
+body {
+  background-image: url(https://i.imgur.com/KKbHvWZ.jpg);
+  background-size: cover;
+}
+
+* {
+  color: white;
+}
+ .create_block {
+   background-color: rgba(255, 255, 255, 0.7);
+   padding: 50px;
+   border-radius: 20px;
+ }

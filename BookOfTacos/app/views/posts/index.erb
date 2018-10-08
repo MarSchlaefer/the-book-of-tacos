@@ -1,42 +1,53 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <title>BookOfTacos</title>
-      <%= csrf_meta_tags %>
-      <%= csp_meta_tag %>
+<header>
+  <div class="container">
+    <img class="banner" src="/assets/images/headertacos-muted.jpg" />
+    <div class="tagline">tacos.</div >
+  </div>
+</header>
 
-      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-      <link rel="stylesheet" href="postsstyle.scss" />
-    </head>
-    <h1>Browse all posts</h1>
-      <!-- <h1>Posts Index</h1> -->
-      <!-- <div id="header">
-        <img src=<%= "/assets/images/headertacos.jpg" %> />
-        <p>TACOSSSSSZZZ</p>
-      </div> -->
-      <div id="headline">
-        <p>POSTS B HERE!</p>
-      </div>
-      <div id="container">
-          <% @posts.each do |p| %>
-            <a class="post" href=<%="/posts/#{p.id}"%> >
-              <div>
-                <img id="posts_index_image" src=<%= p.user.picture %> />
-                <!-- <p><%= link_to "#{p.title}", posts_path(p) %></p>
-                <p id="content"><%= p.content %></p> -->
-                <p id="post_title"><%= p.title %></p>
-                <p id="post_content"><%= p.content %></p>
-              </div>
-            </a>
-          <% end %>
-      </div>
-      <div id="button">
-        <%= form_tag(posts_path, method: :get) do %>
-          <%= select_tag :search, options_for_select(@users.map {|u| [u.name, u.id]}) %>
-          <%= submit_tag "Search" %>
-        <% end %>
-      </div>
-      <br />
-    </body>
-  </html>
+<div class="contents" style="margin-left: 215px; margin-right: 215px;">
+  <div style="margin: 60px; text-align: left;">
+    <div style="font-size: 2em;">taco talk!</div>
+  </div>
+
+  <div>
+    <%= form_tag(posts_path, method: :get) do %>
+    <%= select_tag :search, options_for_select(@users.map {|u| [u.name, u.id]}) %>
+    <%= submit_tag "Search by user", class:"ui button" %>
+    <% end %>
+  </div>
+
+  <div class="grid-container">
+    <% if @posts.length == 0 %>
+      <%= link_to "Nothing to see here. Make a new post!", new_post_path %>
+    <% else %>
+      <% @posts.each do |post| %>
+      <a href=<%="/posts/#{post.id}"%> >
+        <div class="ui card" style="margin-top: 14px; margin-bottom: 14px; margin-right: 10px; margin-left: 10px; height: 375px;">
+          <div class="image" style="height: 178px; overflow: hidden;">
+            <img src=<%="/assets/images/#{post.recipe.title.downcase.split.join}.jpg"%>>
+          </div>
+          <div class="content">
+            <div class="header"><%= link_to post.title, post %></div>
+            <div class="meta">
+              <%= link_to post.recipe.title, post.recipe %>
+            </div>
+            <div class="description">
+              <%= link_to post.content[0..50], post %> ...
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <%= link_to "#{post.comments.count} Comment(s)", post %>
+            </span>
+            <span>
+              <i class="user icon"></i>
+              <%= post.likes.count %> Like(s)
+            </span>
+          </div>
+        </div>
+      </a>
+      <% end %>
+    <% end %>
+  </div>
+</div>

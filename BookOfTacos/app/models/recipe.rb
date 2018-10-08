@@ -23,5 +23,13 @@ class Recipe < ApplicationRecord
     end
   end
 
+  def parse_description
+    if self.description.match(/[1-9]/)
+      self.description.split(/[1-9]. /).select { |x| x.length > 0 }
+    else
+      self.description.split(". ").select { |x| x.length > 0 }
+    end
+
+  end
 
 end

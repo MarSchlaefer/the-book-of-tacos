@@ -1,14 +1,25 @@
-<h1>Login</h1>
 
-<h4> <%= flash[:notice] %> </h4>
-<!-- form will post to '/login' -->
-<%= form_tag(login_path) do %>
-  <%= label_tag "Username" %>
-  <%= text_field_tag :name %>
+<div class="container" style="position: relative">
+  <img src="https://cdn.shopify.com/s/files/1/1061/1924/files/Taco_Emoji.png?9898922749706957214" style="height: 100%; width: 100%">
+  <div class="login-block" style="position: absolute; top: 17%">
+    <h1>Login</h1>
 
-  <%= label_tag "Password" %>
-  <%= password_field_tag :password %>
-  <%= submit_tag 'Login' %>
-<% end %>
-<br>
-<%= link_to 'Create New Account', new_user_path, class: "btn" %>
+    <h4> <%= flash[:notice] %> </h4>
+    <%= form_tag(login_path, class: "ui form") do %>
+
+      <div class="username" style="margin: 30px;">
+        <%= label_tag "Username" %>
+        <%= text_field_tag :name %>
+      </div>
+
+      <div class="pw" style="margin: 30px;">
+        <%= label_tag "Password" %>
+        <%= password_field_tag :password %>
+      </div>
+
+      <%= submit_tag 'Login', class:"ui button", style:"background-color: rgba(156, 25, 34, 0.9); color: white" %>
+    <% end %>
+    <br>
+    <%= link_to 'Create New Account', new_user_path, class: "ui button" %>
+  </div>
+</div>

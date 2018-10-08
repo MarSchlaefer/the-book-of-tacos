@@ -20,18 +20,26 @@ header {
   padding: 0;
 }
 
-body {
-  background-image: url("https://i.imgur.com/VUakDX1.jpg");
-}
 
 footer {
   margin: 100px;
  }
 
-#contents {
-  padding-left: 215px;
-  padding-right: 215px;
-}
+ .grid-container {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   width: 100%;
+   justify-content: center;
+   overflow: hidden;
+   padding: 40px;
+   background: rgba(232, 111, 29, 0.3);
+   border-radius: 20px;
+   margin: 30px;
+ }
+
+
+
 
 .nav {
   background-color: white;
@@ -61,7 +69,7 @@ footer {
 }
 
 a:hover {
-  color: orange;
+  color: rgb(214, 37, 38);
 }
 
 li {
@@ -71,7 +79,7 @@ li {
 * {
   box-sizing: border-box;
   font-family: 'IBM Plex Mono', monospace;
-  color: #863E31;
+  color: rgb(102, 19, 44);
 }
 
 a {
@@ -84,41 +92,6 @@ a {
   color: #863E31;
 }
 
-#banner img {
-  display: flex;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 400px;
-}
-
-.carousel {
-  background: #EEE;
-  width: 40%;
-}
-
-.carousel-cell {
-  width: 66%;
-  height: 200px;
-  margin-right: 10px;
-  background: #8C8;
-  border-radius: 5px;
-  counter-increment: gallery-cell;
-}
-
-/* cell number */
-.carousel-cell:before {
-  display: block;
-  text-align: center;
-  content: counter(gallery-cell);
-  line-height: 200px;
-  font-size: 80px;
-  color: white;
-}
-
-#posts, #likes {
-  padding: 30px;
-}
 
 /* move to posts show css */
 
@@ -146,9 +119,6 @@ a {
    justify-content: space-around;*/
  }
 
-.my-posts {
-  padding: 80px;
-}
  li{
    list-style: none;
    padding: 10px;
@@ -156,6 +126,18 @@ a {
 
  nav li a{
    text-decoration: none;
-   color: black;
    font-size: 15px
  }
+
+.title-field, .content-field {
+  padding: 10px;
+}
+
+img.banner {
+  object-fit: cover;
+  width: 100%;
+}
+
+.content-text {
+  line-height: 2em;
+}

@@ -1,53 +1,96 @@
+  <div class="post-body">
 
-<center>
-  <div class="post-text" >
-    <p id="title"><%= @post.title %></p>
     <div class="recipe">
-      <%= link_to @post.recipe.title, @post.recipe %>
-      <a class="recipe" href=<%="/recipes/#{Recipe.find_by(id: @post.recipe.id)}"%> >
+      <a class="recipe-link" href=<%="/recipes/#{@post.recipe.id}"%>><img src=<%="/assets/images/#{@post.recipe.title.downcase.split.join}.jpg"%>></a>
     </div>
 
-    <p id="author-name"><%= @post.user.name %></p>
-    <a class="recipe" href=<%="/users/#{@user.id}"%> >
-    <p id="post-timestamp"><%= @post.created_at %></p>
-    <p id="content"><%= @post.content %></p>
+    <div class="post-data">
+      <div class="author-info">
+        <img class="author-avatar avatar" src=<%= @post.user.picture %> style="width: 100px; margin-right: 20px;">
+        <span class="title"><%= @post.title %>   <br /></span>
+        <span class="author-name">by: <%= link_to @post.user.name, @post.user %></span>
+        <span class="post-timestamp"><%= @post.created_at %></span>
+      </div>
+
+      <div class="content-text"><%= @post.content %></div>
+    </div>
   </div>
-</center>
 
 <div class="like-button">
   <% if current_user.likes.map {|like| like.post}.include? @post %>
-  <%= form_for(current_user.likes.find_by(post_id: @post.id), html: { method: :delete }) do |f| %>
-  <%= f.submit "Unlike", class: "unlike-btn" %>
-  <% end %>
+    <% like_id = current_user.likes.find_by(post_id: @post.id).id %>
+    <form class="ui labeled button" id=<%="edit_like_#{like_id}"%> action=<%="/likes/#{like_id}"%> accept-charset="UTF-8" method="post" style="margin: 0px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px;">
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="authenticity_token" value="JiIYUfNL9XVhAeMIyt5gHb30xhMtMzzaPk4Ii7fGXYrgYcKF5Ul9J2ZNMbmVZ0IVqpZvS9UVkFjTOjguhs8KJw==">
+        <i class="heart icon" style="color: grey; margin: 0; padding: 0;"></i>
+        <input type="submit" name="commit" value=" unlike  " data-disable-with="Unlike" class="ui button" style="margin: 0; padding: 0;">
+      <a class="ui basic label" style="margin: 0; padding: 5px;">
+        <%= @post.likes.length %>
+      </a>
+    </form>
   <% else %>
-  <%= form_for @like do |f| %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit "Like", class: "like-btn" %>
-  <% end %>
+    <form class="ui labeled button" id="new_like" action="/likes" accept-charset="UTF-8" method="post" style="margin: 0px; padding-left: 10px; padding-right: 10px; padding-top: 5px; padding-bottom: 5px">
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="authenticity_token" value="H50MW5bYd8ioPlziKMkUBbT/sNzDnQBVCCWZ6/D/rrPZ3taPgNr/mq9yjlN3cDYNo50ZhDu7rNflUalOwfb5Hg==">
+        <input value=<%= @post.id %> type="hidden" name="like[post_id]" id="like_post_id">
+        <input value=<%= current_user.id %> type="hidden" name="like[user_id]" id="like_user_id">
+        <i class="heart icon" style="margin: 0; padding: 0;"></i>
+        <input type="submit" name="commit" value=" like  " data-disable-with="" class="ui button" style="margin: 0; padding: 0;">
+        <a class="ui basic label" style="margin: 0; padding: 5px;">
+        <%= @post.likes.length %>
+      </a>
+    </form>
   <% end %>
 </div>
 
-<div class="post-comments">
-  <% if @post.comments.empty? %>
-    <p>Be the first to comment!</p>
-  <% else %>
-    <h4 id="comments">Comments</h4>
-    <ol><% @post.comments.each do |comment| %>
-      <div class="comment">
-        <span class="comment-author-name"><%= link_to comment.user.name, user_path(comment.user) %>
-        </span>
-      <span class="comment-content"><%= comment.content %></span>
-      <span class="comment-timestamp"><%= comment.created_at.to_s[0..15] %></span>
-      </div>
+<div class="ui card post-comments" style="width: auto; margin-left: 20%; margin-right: 20%; text-align: left;">
+  <div class="content">
+    <div class="header" style="color: rgb(161, 50, 36)">Comments</div>
+  </div>
+  <div class="content">
+    <% if @post.comments.empty? %>
+      <h4 class="ui sub header">Be the first to comment!</h4>
+    <% else %>
+    <div class="ui small feed">
+      <ol><% @post.comments.each do |comment| %>
+        <div class="event comment">
+          <div class="content-text">
+            <div class="summary">
+              <span class="comment-author-name"><%= link_to comment.user.name, user_path(comment.user) %>
+              </span> : <span class="comment-content"><%= comment.content %></span>
+            </div>
+          <span class="comment-timestamp"><%= comment.created_at.to_s[0..15] %></span>
+
+            <% if current_user == comment.user %>
+            <% @comment = Comment.find_by(id: comment.id) %>
+            <%= form_for(@comment, html: { method: :delete, style: "display: inline;"}) do |f| %>
+              <%= f.submit "Delete comment", html: {class: "ui button"}  %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    </ol>
-  <% end %>
-  <%= form_for @comment do |f| %>
-    <%= f.label :content, "New Comment" %>
-    <%= f.text_field :content %>
-    <%= f.hidden_field :post_id, value: @post.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit %>
-  <% end %>
+      </ol>
+    </div>
+    <% end %>
+  </div>
+  <div class="extra content">
+    <form class="ui button" id="new_comment" action="/comments" accept-charset="UTF-8" method="post" style="width: 100%;"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="l2iuj8RY0SITdNfJR+mOV+DVsk9cuSZbKZnTAz4iuvlRK3Rb0lpZcBQ4BXgYUKxf97cbF6SfitnE7eOmDyvtVA==">
+    <label for="comment_content">New Comment</label>
+    <input type="text" name="comment[content]" id="comment_content"  style="width: 80%;">
+    <input value=<%= @post.id %> type="hidden" name="comment[post_id]" id="comment_post_id">
+    <input value=<%= current_user.id %> type="hidden" name="comment[user_id]" id="comment_user_id">
+    <input type="submit" name="commit" value="Create Comment" data-disable-with="Create Comment">
+</form>
+  </div>
+
 </div>
+
+
+
+<% if @post.user == current_user %>
+  <%= form_for(@post, html: { class: "ui button", method: :delete }) do |f| %>
+    <%= f.submit "Delete this post", class: "ui button" %>
+  <% end %>
+<% end %>

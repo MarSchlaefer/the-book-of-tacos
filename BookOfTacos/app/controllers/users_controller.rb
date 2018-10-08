@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :authorized, only: [:new, :create]
 
+  def index
+  end
+
   def show
-    
+
   end
 
   def new
@@ -13,9 +16,14 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
-    @user.picture = "/assets/images/pepes/pepe#{rand(1..7)}.jpg"
-    @user.save
-    redirect_to @user
+    if @user.valid?
+      @user.picture = "/assets/images/pepes/pepe#{rand(1..8)}.jpg"
+      @user.save
+      redirect_to @user
+    else
+      flash[:error] = @user.errors.full_messages
+      redirect_to new_user_path
+    end
   end
 
   def edit

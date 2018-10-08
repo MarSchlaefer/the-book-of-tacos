@@ -2,9 +2,10 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
-    # @posts = Post.search(params[:search])
+    @posts = Post.search(params[:search])
     @users = User.all
+    @recipes = Recipe.all
+
   end
 
   def show

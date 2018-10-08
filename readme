@@ -92,42 +92,7 @@ TOOOOODOOOOOODOODODODODOODODODODODODODODODO
 Todo:
           - 1. Homepage/welcome => random selection of tacos => recipe page for said taco
           - 2. Login screen (landing page); sessions ; auth
-(read, may~ 3. User relationships associations
-          - 4. User profile page => list posts / list recipes / list comments / list user_relationships
+          - 3. User relationships associations
 (nicky)   - 5. Recipe page => insert img!
           - 6. Filter recipes by ingredient (on Recipes index) ** change to text_field later
             7. Random taco generator : return a recipe user hasn't liked yet
-
-- Extra
-(Taco cat img generator)
-(Restaurant locator)
-
-****************^**&^%%$#^&*(&^%$#$@#$%^&*()*&^%$#@%^&*())
-
-Add button to write a post on current_user profile
-
-
-
-
-
-----------------CSSSSSSSS-----------------------
-
-
-R1004
-
-Aside from styling:
-
-- May:
-1. feature to create recipes
-2. feature to delete post
-3. feature to delete comment
-Style: login / create acct
-
-- Nicky:
-Style: Recipe and post show pages
-       Recipe create page
-
-
-- Mar:
-"Perfect" the user page
-BEAUTY
